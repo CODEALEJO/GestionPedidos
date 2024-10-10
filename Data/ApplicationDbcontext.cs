@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GestionPedidos.Models;
+using GestionPedidos.Seeders;
 using Microsoft.EntityFrameworkCore;
 
 namespace GestionPedidos.Data;
@@ -20,4 +21,13 @@ public class ApplicationDbcontext : DbContext
     {
     }
 
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        CategorySeeder.Seed(modelBuilder);
+        ClientSeeder.Seed(modelBuilder);
+        OrderSeeder.Seed(modelBuilder);
+        ProductSeeder.Seed(modelBuilder);
+    }
 }
